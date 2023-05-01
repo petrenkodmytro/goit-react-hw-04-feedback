@@ -11,7 +11,8 @@ export const FeedbackOptions = ({ stateKeys, onLeaveFeedback }) => {
           <FeedbackBtn
             key={stateKey}
             name={stateKey}
-            onClick={() => onLeaveFeedback(stateKey)} //анонимна фун-я
+            //анонимна фун-я
+            onClick={() => onLeaveFeedback(stateKey)} 
           >
             {Icons[stateKey]}
             {stateKey}

@@ -6,8 +6,11 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
-    accent: '#b7e6f5',
-    main: '#f2f0ec',
+    main: '#212624',
+    bgc: '#c8c7cd',
+    accentLight: '#9199be',
+    accentDark: '#54678f',
+    error: '#720017',
   },
 };
 

@@ -12,12 +12,13 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  
+
   // метод класу збору статистики
   onLeaveFeedback = stateKey => {
     // console.log(stateKey); //знаходимо відповідну кнопку
     this.setState(prevState => ({
-      [stateKey]: prevState[stateKey] + 1, //збільшуємо відповідне значення
+      //збільшуємо відповідне значення
+      [stateKey]: prevState[stateKey] + 1,
     }));
   };
 
@@ -36,7 +37,8 @@ export class App extends Component {
   //метод классу відсоток позитивних відгуків
   countPositiveFeedbackPercentage = ({ good }) => {
     const TotalFeedback = this.countTotalFeedback(this.state);
-    return Math.round((good / TotalFeedback) * 100) || 0; //або 0, щоб не було помилки в консолі
+    //або 0, щоб не було помилки в консолі
+    return Math.round((good / TotalFeedback) * 100) || 0; 
   };
 
   render() {
