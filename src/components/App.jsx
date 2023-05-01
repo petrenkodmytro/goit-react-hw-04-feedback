@@ -44,6 +44,7 @@ export class App extends Component {
   render() {
     return (
       <Layout>
+
         <Section title="Please leave feedback">
           <FeedbackOptions
             stateKeys={Object.keys(this.state)}
@@ -64,6 +65,7 @@ export class App extends Component {
         </Section>
 
         <GlobalStyle />
+        
       </Layout>
     );
   }
