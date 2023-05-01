@@ -3,19 +3,19 @@ import PropTypes, { arrayOf } from 'prop-types';
 import { FeedbackWrap, FeedbackBtn } from './FeedbackOptions.styled';
 import { Icons } from './Icons';
 
-export const FeedbackOptions = ({ stateKeys, onLeaveFeedback }) => {
+export const FeedbackOptions = ({ feedbackKeys, onLeaveFeedback }) => {
   return (
     <FeedbackWrap>
-      {stateKeys.map(stateKey => {
+      {feedbackKeys.map(feedbackKey => {
         return (
           <FeedbackBtn
-            key={stateKey}
-            name={stateKey}
+            key={feedbackKey}
+            name={feedbackKey}
             //анонимна фун-я
-            onClick={() => onLeaveFeedback(stateKey)} 
+            onClick={() => onLeaveFeedback(feedbackKey)}
           >
-            {Icons[stateKey]}
-            {stateKey}
+            {Icons[feedbackKey]}
+            {feedbackKey}
           </FeedbackBtn>
         );
       })}

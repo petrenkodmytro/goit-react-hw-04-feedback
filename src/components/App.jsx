@@ -1,72 +1,60 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { GlobalStyle } from './GlobalStyle';
 import { Layout } from './Layout/Layout';
 import { Section } from './Section/Section';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 
-export class App extends Component {
+export const App = () => {
   // Стан застосунку
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   // метод класу збору статистики
-  onLeaveFeedback = stateKey => {
-    // console.log(stateKey); //знаходимо відповідну кнопку
-    this.setState(prevState => ({
-      //збільшуємо відповідне значення
-      [stateKey]: prevState[stateKey] + 1,
-    }));
+  const onLeaveFeedback = feedbackKey => {
+    if (feedbackKey === 'good') {
+      setGood(prevState => prevState + 1);
+    }
+    if (feedbackKey === 'neutral') {
+      setNeutral(prevState => prevState + 1);
+    }
+    if (feedbackKey === 'bad') {
+      setBad(prevState => prevState + 1);
+    }
   };
-
-  // onLeaveFeedback = evt => {
-  //   const {
-  //     target: { name },
-  //   } = evt;
-  //   console.log({ name });
-  //   this.setState(prevState => {
-  //     return { [name]: prevState[name] + 1 };
-  //   });
-  // };
 
   //метод класу загальної кількості зібраних відгуків з усіх категорій
-  countTotalFeedback = ({ good, neutral, bad }) => good + neutral + bad;
+  const countTotalFeedback = () => good + neutral + bad;
   //метод классу відсоток позитивних відгуків
-  countPositiveFeedbackPercentage = ({ good }) => {
-    const TotalFeedback = this.countTotalFeedback(this.state);
+  const countPositiveFeedbackPercentage = () => {
+    const TotalFeedback = countTotalFeedback();
     //або 0, щоб не було помилки в консолі
-    return Math.round((good / TotalFeedback) * 100) || 0; 
+    return Math.round((good / TotalFeedback) * 100) || 0;
   };
 
-  render() {
-    return (
-      <Layout>
+  return (
+    <Layout>
 
-        <Section title="Please leave feedback">
-          <FeedbackOptions
-            stateKeys={Object.keys(this.state)}
-            onLeaveFeedback={this.onLeaveFeedback}
-          />
-        </Section>
+      <Section title="Please leave feedback">
+        <FeedbackOptions
+          feedbackKeys={['good', 'neutral', 'bad']}
+          onLeaveFeedback={onLeaveFeedback}
+        />
+      </Section>
 
-        <Section title="Statistics">
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.countTotalFeedback(this.state)}
-            positivePercentage={this.countPositiveFeedbackPercentage(
-              this.state
-            )}
-          />
-        </Section>
+      <Section title="Statistics">
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={countTotalFeedback()}
+          positivePercentage={countPositiveFeedbackPercentage()}
+        />
+      </Section>
 
-        <GlobalStyle />
-        
-      </Layout>
-    );
-  }
-}
+      <GlobalStyle />
+      
+    </Layout>
+  );
+};

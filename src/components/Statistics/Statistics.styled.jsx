@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StatWrap = styled.div`
-  padding: 5px;
+  padding: 10px;
   /* border: 1px solid; */
   border-radius: 5px;
   border-color: ${props => {
@@ -19,5 +19,5 @@ export const StatWrap = styled.div`
 export const Text = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `;
