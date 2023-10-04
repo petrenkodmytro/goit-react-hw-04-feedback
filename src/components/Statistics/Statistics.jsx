@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Notification } from 'components/Notification/Notification';
+import { Notification } from '../../components/Notification/Notification';
 import { StatWrap, Text } from './Statistics.styled';
 
 export const Statistics = ({
